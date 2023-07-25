@@ -1,0 +1,36 @@
+body {
+    background-image: url("background.jpg");
+}
+
+#main {
+    background-color: blueviolet;
+    border: rounded;
+    padding: 20px;
+    border-radius: 25px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    text-align: center;
+    font-family: "Borel";
+    font-size: 40px;
+}
+
+label {
+    font-family: "Oxygen";
+    font-size: 20px;
+    display: block;
+    margin : 0 auto;
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin : 0 auto;
+    text-align: center;
+}

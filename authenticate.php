@@ -15,11 +15,9 @@ if ($user->exists($username, $password)) {
     $_SESSION['login'] = true;
     echo "VALID: welcome \n".$username."...";
     echo "\n redirecting";
-    sleep(3);
     header("location: login.php");
 } else {
     echo "INVALID: username or password...";
     echo "\n redirecting";
-    sleep(3);
     header("Location: index.html");
 }

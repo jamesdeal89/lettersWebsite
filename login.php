@@ -1,9 +1,9 @@
 <?php
+include 'User.php';
 session_start();
 if (!isset($_SESSION['login']) == null or !isset($_SESSION['login']) == False) {
     header("Location: index.html?message=".urlencode('please login first'));
 }
-include 'User.php';
 ?>
 
 <html>
@@ -21,8 +21,11 @@ include 'User.php';
         $letter = $user->getLetter($_SESSION["usr"]);
         ?>
         <p>Below is your latest letter:</p>
-        <p>contents <br/> <?php echo $letter; ?> <br/> end</p>
+        <div id="letter" onclick="openLetter()">
+            <p>contents <br/> <?php echo $letter; ?> <br/> end</p>
+        </div>
     </div>
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
+
 </html>

@@ -8,6 +8,8 @@ $user = new User($env["DATABASENAME"], $env["URL"], $env["DATABASEUSR"], $env["D
 
 $username = $_POST['usr'];
 $password = $_POST['pswd'];
+$_SESSION['usr'] = $username;
+$_SESSION['pswd'] = $password;
 
 if ($user->exists($username, $password)) {
     $_SESSION['login'] = true;

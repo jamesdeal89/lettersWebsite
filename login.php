@@ -22,7 +22,7 @@ if (!isset($_SESSION['login']) == null or !isset($_SESSION['login']) == False) {
         ?>
         <p>Below is your latest letter:</p>
         <div id="letter" onclick="openLetter()">
-            <p>contents <br/> <?php echo $letter; ?> <br/> end</p>
+            <p id="contents">contents <br/> <?php echo $letter; ?> <br/> end</p>
         </div>
     </div>
 <script src="script.js"></script>

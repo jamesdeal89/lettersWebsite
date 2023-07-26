@@ -1,5 +1,4 @@
 <?php
-$env = parse_ini_file('.env');
 
 class User
 {
@@ -69,23 +68,8 @@ class User
 
     public function getLetter($username)
     {
-        $statement = $this->dbh->prepare(
-            'SELECT * from '.$this->$lettersTableName.' where username = :username'
-        );
-
-        if (false === $statement) {
-            throw new Exception('Invalid prepare statement');
-        }
-
-        $result = $statement->execute([':username' => $username]);
-
-        if (false === $result) {
-            throw new Exception(implode(' ', $statement->errorInfo()));
-        }
-
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $row['letterContent'];
+        $stmt = $this->dbh->prepare("SELECT letterContent FROM letters WHERE username = :username;");
+        $stmt->execute([':username' => $username]);
+        return ($stmt->setFetchMode(PDO::FETCH_ASSOC)["letterContent"]);
     }
-
 }

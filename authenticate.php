@@ -1,11 +1,10 @@
 <?php
-// enable debugging error reporting
+session_start(); // Start the session to store session variables
 
+// enable debugging error reporting
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-session_start(); // Start the session to store session variables
 
 include 'User.php';
 
@@ -21,9 +20,14 @@ $_SESSION['usr'] = $username;
 $_SESSION['pswd'] = $password;
 
 if ($user->exists($username, $password)) {
+    // change session variable for login to true
+    // this is later used to ensure if the login.php page is navigated to without a logged in account, it will redirect to the login page
     $_SESSION['login'] = true;
-    header("Location: login.php"); // Redirect to the desired page after successful login
-} else {
-    header("Location: index.html"); // Redirect to the desired page after unsuccessful login
+    // redirect to the desired page after successful login
+    header("Location: login.php"); 
+}
+else {
+    // redirect to login page again if login is false
+    header("Location: index.html");
 }
 ?>

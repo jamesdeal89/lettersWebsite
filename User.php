@@ -10,11 +10,16 @@ class User
     public function __construct($database, $host, $databaseUsername, $databaseUserPassword)
     {
         try {
-
+            $dsn = "mysql:host=$host;dbname=$database;charset=utf8";
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ];
             $this->dbh =
-                new PDO(sprintf('mysql:host=%s;dbname=%s', $host, $database),
+                new PDO($dsn, 
                     $databaseUsername,
-                    $databaseUserPassword
+                    $databaseUserPassword,
+                    $options
                 );
 
         } catch (PDOException $e) {
@@ -66,10 +71,12 @@ class User
         return ($password === $row['password']);
     }
 
-    public function getLetter($username)
+    public function getLetter()
     {
-        $stmt = $this->dbh->prepare("SELECT letterContent FROM letters WHERE username = :username;");
-        $stmt->execute([':username' => $username]);
-        return ($stmt->setFetchMode(PDO::FETCH_ASSOC)["letterContent"]);
+        $stmt = $this->dbh->query("SELECT * from letters");
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "username" . $row["username"] . "<br>";
+            echo "letterContent" . $row["letterContent"] . "<br>";
+        }
     }
 }

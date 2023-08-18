@@ -18,7 +18,7 @@ if (!isset($_SESSION['login']) == null or !isset($_SESSION['login']) == False) {
         <?php
         $env = parse_ini_file('.env');
         $user = new User($env["DATABASENAME"], $env["URL"], $env["DATABASEUSR"], $env["DATABASEPASS"]);
-        $letter = $user->getLetter($_SESSION["usr"]);
+        $letter = $user->getLetter();
         ?>
         <p>Below is your latest letter:</p>
         <div id="letter" onclick="openLetter()">

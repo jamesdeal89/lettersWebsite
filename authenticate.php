@@ -1,4 +1,11 @@
 <?php
+// enable debugging error reporting
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start(); // Start the session to store session variables
 
 include 'User.php';
 
@@ -8,16 +15,15 @@ $user = new User($env["DATABASENAME"], $env["URL"], $env["DATABASEUSR"], $env["D
 
 $username = $_POST['usr'];
 $password = $_POST['pswd'];
+
+// Store username and password in session variables
 $_SESSION['usr'] = $username;
 $_SESSION['pswd'] = $password;
 
 if ($user->exists($username, $password)) {
     $_SESSION['login'] = true;
-    echo "VALID: welcome \n".$username."...";
-    echo "\n redirecting";
-    header("location: login.php");
+    header("Location: login.php"); // Redirect to the desired page after successful login
 } else {
-    echo "INVALID: username or password...";
-    echo "\n redirecting";
-    header("Location: index.html");
+    header("Location: index.html"); // Redirect to the desired page after unsuccessful login
 }
+?>

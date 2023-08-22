@@ -1,6 +1,6 @@
-letterContainer = document.getElementById("letter");
-contents = document.getElementById("contents");
-sendForm = document.getElementById("send");
+var letterContainer = document.getElementById("letter");
+var contents = document.getElementById("contents");
+var sendForm = document.getElementById("send");
 
 letterContainer.style.backgroundImage = "url(envelope.png)";
 letterContainer.style.backgroundSize = "100% 100%";
@@ -22,6 +22,11 @@ function openLetter() {
     letterContainer.style.backgroundImage = "url(card.png)"
     letterContainer.style.backgroundSize = "100% 100%"
     contents.style.visibility = "visible";
+    letterContainer.style.height = "auto";
+    var contentHeight = letterContainer.scrollHeight;
+    letterContainer.style.height = contentHeight + "px";
 }
 
+window.addEventListener('load', adjustDivSize);
+window.addEventListener('resize', adjustDivSize);
 

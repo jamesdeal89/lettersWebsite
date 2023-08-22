@@ -53,17 +53,20 @@ class User
     }
 
     public function getLetter($usr) {
+        // TODO: check for a third field called 'date' which will only retrieve a letter if it's that date or later
         // select all letter table data
         $stmt = $this->dbh->query("SELECT * from letters");
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if ($row["username"] == $usr) {
             echo "Addressed To: " . $row["username"] . "<br>";
             echo $row["letterContent"] . "<br>";
+            echo "=================<br>";
             }
         }
     }
 
     public function sendLetter($usr,$content) {
+        // TODO: allow a third field which sets a 'date' when a letter can be opened
         // take the usr and content parameters and insert this data into the letters table
         $sql = "INSERT INTO letters(username, letterContent) VALUES(:usr,:content)";
         $stmt = $this->dbh->prepare($sql);

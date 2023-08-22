@@ -52,12 +52,23 @@ class User
         return $count > 0;
     }
 
-    public function getLetter() {
+    public function getLetter($usr) {
         // select all letter table data
         $stmt = $this->dbh->query("SELECT * from letters");
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($row["username"] == $usr) {
             echo "Addressed To: " . $row["username"] . "<br>";
-            echo "Letter Contents:: " . $row["letterContent"] . "<br>";
+            echo $row["letterContent"] . "<br>";
+            break;
+            }
         }
+    }
+
+    public function sendLetter($usr,$content) {
+        // take the usr and content parameters and insert this data into the letters table
+        $stmt = $this->dbh->query("INSERT INTO letters (username, letterContent) VALUES(:usr,:content)");
+        $stmt->bindValue(":usr", $usr);
+        $stmt->bindValue(":content", $content);
+        $stmt->execute();
     }
 }

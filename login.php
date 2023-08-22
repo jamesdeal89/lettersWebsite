@@ -23,14 +23,14 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         ?>
         <p>Below is your latest letter:</p>
         <div id="letter" onclick="openLetter()">
-            <p id="contents">contents <br/> 
+            <p id="contents">
             
             <?php 
             // parse the letter database data and find the specific user's letters and display them
-            $user->getLetter();
+            $user->getLetter($_SESSION["usr"]);
             ?> 
             
-            <br/> end</p>
+            </p>
         </div>
     </div>
 <script src="script.js"></script>

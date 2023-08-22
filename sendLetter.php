@@ -15,10 +15,10 @@ $user = new User($env["DATABASENAME"], $env["URL"], $env["DATABASEUSR"], $env["D
 
 // get the letter content the user submitted
 $toBox = $_POST['toBox'];
-$contentBox = $_POST['contentBox'];
+$contentBox = $_POST['contBox'];
 
 // check if that adressee exists 
-if ($user->addressExists($toBox === TRUE)){
+if ($user->addressExists($toBox)){
     // if adressee exists, add the letter to the letters table
     $user->sendLetter($toBox,$contentBox);
     echo "Letter has been sent!";

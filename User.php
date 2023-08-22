@@ -59,14 +59,14 @@ class User
             if ($row["username"] == $usr) {
             echo "Addressed To: " . $row["username"] . "<br>";
             echo $row["letterContent"] . "<br>";
-            break;
             }
         }
     }
 
     public function sendLetter($usr,$content) {
         // take the usr and content parameters and insert this data into the letters table
-        $stmt = $this->dbh->query("INSERT INTO letters (username, letterContent) VALUES(:usr,:content)");
+        $sql = "INSERT INTO letters(username, letterContent) VALUES(:usr,:content)";
+        $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(":usr", $usr);
         $stmt->bindValue(":content", $content);
         $stmt->execute();
@@ -76,7 +76,7 @@ class User
         // query database for the given user
         $query = "SELECT COUNT(*) FROM users WHERE username = :username";
         $stmt = $this->dbh->prepare($query);
-        $stmt->bindValue(':username', $username);
+        $stmt->bindValue(':username', $usr);
         $stmt->execute();
         $count = $stmt->fetchColumn();
 

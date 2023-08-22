@@ -37,7 +37,7 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         <!--<button id="showSend">Send a letter?</button>-->
         <div id="send">
             <p>Below you can send a letter:</p>
-            <from action="sendLetter.php" method="post" accept-charset=utf-8>
+            <form action="sendLetter.php" method="post" accept-charset=utf-8>
                 <label for="toBox">To?:</label>
                 <input type="text" required=True id="toBox" name="toBox"><br><br>
                 <label for="contBox">Content?:</label>

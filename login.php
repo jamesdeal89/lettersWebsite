@@ -11,9 +11,11 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>LetterWebsite</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="./style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Borel">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <div id="main">
@@ -22,6 +24,12 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         $env = parse_ini_file('.env');
         $user = new User($env["DATABASENAME"], $env["URL"], $env["DATABASEUSR"], $env["DATABASEPASS"]);
         ?>
+        <div>
+            <form action="./logout.php" method="post">
+                <input type="submit" value="Log-Out">
+            </form>
+        </div>
+
         <p>Below is your latest letter:</p>
         <div id="letter" onclick="openLetter()">
             <p id="contents">
@@ -33,8 +41,12 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
             
             </p>
         </div>
-
-        <!--<button id="showSend">Send a letter?</button>-->
+        <div style="text-align:center">
+        <br>
+        <hr>
+        <br>
+        <button id="showSend" onclick="showForm()">Send a letter?</button>
+        </div>
         <div id="send">
             <p>Below you can send a letter:</p>
             <form action="sendLetter.php" method="post" accept-charset=utf-8>
@@ -47,7 +59,6 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         </div>
     </div>
 
-<script src="script.js"></script>
 </body>
 
 </html>

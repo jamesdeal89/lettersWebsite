@@ -71,4 +71,16 @@ class User
         $stmt->bindValue(":content", $content);
         $stmt->execute();
     }
+
+    public function addressExists($usr) {
+        // query database for the given user
+        $query = "SELECT COUNT(*) FROM users WHERE username = :username";
+        $stmt = $this->dbh->prepare($query);
+        $stmt->bindValue(':username', $username);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        // returns true if at least 1 match is found in db
+        return $count > 0;
+    }
 }

@@ -8,6 +8,7 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
 
 <html>
 <head>
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>LetterWebsite</title>
     <link rel="stylesheet" href="style.css"/>
@@ -32,7 +33,20 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
             
             </p>
         </div>
+
+        <!--<button id="showSend">Send a letter?</button>-->
+        <div id="send">
+            <p>Below you can send a letter:</p>
+            <from action="sendLetter.php" method="post" accept-charset=utf-8>
+                <label for="toBox">To?:</label>
+                <input type="text" required=True id="toBox" name="toBox"><br><br>
+                <label for="contBox">Content?:</label>
+                <input type="text" required=True id="contBox" name="contBox"><br><br>
+                <input type="submit" id="submit" name="submit"><br><br>
+            </form>
+        </div>
     </div>
+
 <script src="script.js"></script>
 </body>
 

@@ -1,12 +1,23 @@
 const letterContainer = document.getElementById("letter");
 const contents = document.getElementById("contents");
 
+//const sendForm = document.getElementById("send");
+
+
+//document.getElementById("showSend").onclick = showForm();
+
+
 letterContainer.style.backgroundImage = "url(envelope.png)";
 letterContainer.style.backgroundSize = "100% 100%";
 letterContainer.style.height = "200px";
 letterContainer.style.width = "400px";
 letterContainer.style.padding = "20px";
 contents.style.visibility = "hidden";
+//sendForm.style.contentVisibility = "hidden";
+
+//function showForm() {
+//    sendForm.style.contentVisibility = "visible";
+//}
 
 function openLetter() {
     letterContainer.style.backgroundColor = "white";

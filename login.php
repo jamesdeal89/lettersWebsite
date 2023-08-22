@@ -53,7 +53,9 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
                 <label for="toBox">To?:</label>
                 <input type="text" required=True id="toBox" name="toBox"><br><br>
                 <label for="contBox">Content?:</label>
-                <input type="text" required=True id="contBox" name="contBox"><br><br>
+                <div style="text-align:center">  
+                <textarea id="contBox" name="contBox" rows="5" cols="40"></textarea>
+                </div>
                 <input type="submit" id="submit" name="submit"><br><br>
             </form>
         </div>

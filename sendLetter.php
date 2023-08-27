@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 include 'User.php';
 
-$env = parse_ini_file('.env');
+$env = parse_ini_file('../.env');
 
 $user = new User($env["DATABASENAME"], $env["URL"], $env["DATABASEUSR"], $env["DATABASEPASS"]);
 

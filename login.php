@@ -26,7 +26,7 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         ?>
         <div>
             <form action='./logout.php' method='post'>
-                <input type='submit' value='Log-Out'>
+                <input class="button" type='submit' value='Log-Out'>
             </form>
         </div>
 
@@ -56,7 +56,7 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
                 <div style='text-align:center'>  
                 <textarea id='contBox' name='contBox' rows='5' cols='40'></textarea>
                 </div>
-                <input type='submit' id='submit' name='submit'><br><br>
+                <input class="button" type='submit' id='submit' name='submit'><br><br>
             </form>
         </div>
     </div>

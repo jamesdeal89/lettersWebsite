@@ -1,3 +1,11 @@
+<html>
+<head>
+    <link href="sendStyle.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+</head>
+<body>  
+<div id="envelope"></div>
+<p>
 <?php
 
 session_start(); // Start the session to store session variables
@@ -23,12 +31,15 @@ if ($user->addressExists($toBox)){
     $user->sendLetter($toBox,$contentBox);
     echo "Letter has been sent!";
     // below uses echo to run a script which adds a time delay before redirect, this is as PHP's sleep() does not affect header() redirects
-    echo "<script>setTimeout(function(){ window.location.href = 'login.php'; }, 2000);</script>";
+    echo "<script>setTimeout(function(){ window.location.href = 'login.php'; }, 6000);</script>";
 }
 else {
     // if adressee does not exist, tell user to retry
     echo "Invalid adressee... retry";
-    echo "<script>setTimeout(function(){ window.location.href = 'login.php'; }, 2000);</script>";
+    echo "<script>setTimeout(function(){ window.location.href = 'login.php'; }, 6000);</script>";
 }
 
 ?>
+</p>
+</body>
+</html>

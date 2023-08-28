@@ -1,18 +1,24 @@
 body {
     background-image: url("background.jpg");
-    width: 100%;
-    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 #letter {
     background-image: url("envelope.png");
+    color: black;
 }
 
 #showSend {
-    width: 60px;
-    height: 20px;
-    font-family: "Borel";
+    width: 200px;
+    height: 50px;
+    font-family: "Oxygen";
+    font-size: 20px;
     color: black;
+}
+
+.button {
+    font-family: "Oxygen";
+    font-size: 14px;
 }
 
 #main {
@@ -28,6 +34,7 @@ body {
     transform: translate(-50%, -50%);
     overflow: auto;
     max-height: 80%;
+    color: white;
 }
 
 

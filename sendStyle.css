@@ -10,6 +10,28 @@ p {
     animation-iteration-count: 1;
 }
 
+.mailbox {
+    background-image: url("mailbox.png");
+    height: 200px;
+    width: 100px;
+    background-size: 100% 100%;
+    color:white;
+    text-align: center;
+    font-family: "Borel";
+}
+
+#mb1{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+
+#mb2{
+    position: absolute;
+    top: 50%;
+    left: 83%;
+}
+
 body {
     background-image: url("background.jpg");
     background-size: 100%;

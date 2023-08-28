@@ -21,6 +21,15 @@ body {
     font-size: 14px;
 }
 
+#toBox {
+    font-family: "Oxygen";
+}
+
+#contBox {
+    font-family: "Borel";
+    text-align: center;
+}
+
 #main {
     background-color: blueviolet;
     border: rounded;

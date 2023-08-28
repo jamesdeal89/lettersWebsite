@@ -6,6 +6,13 @@ body {
     background-image: url("envelope.png");
 }
 
+#showSend {
+    width: 60px;
+    height: 20px;
+    font-family: "Borel";
+    color: black;
+}
+
 #main {
     background-color: blueviolet;
     border: rounded;

@@ -1,5 +1,7 @@
 body {
     background-image: url("background.jpg");
+    width: 100%;
+    background-repeat: no-repeat;
 }
 
 #letter {

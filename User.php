@@ -52,17 +52,28 @@ class User
         return $count > 0;
     }
 
-    public function getLetter($usr) {
-        // TODO: check for a third field called 'date' which will only retrieve a letter if it's that date or later
+    public function getLetter($usr,$showRead) {
         // select all letter table data
-        $stmt = $this->dbh->query("SELECT * from letters");
+        // where the current time is later than the letter lock time
+        // and the current user is the adressee
+        // and, based on $showRead boolean, select letter which have or haven't been read
+        $stmt = $this->dbh->prepare("SELECT * from letters WHERE time < :time AND username = :username AND read = :showRead");
+        // get system time in seconds since unix epoch
+        $time = time();
+        $stmt->bindValue(":time",$time);
+        $stmt->bindValue(":username",$usr);
+        $stmt->bindValue(":showRead",$showRead);
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($row["username"] == $usr) {
             echo "Addressed To: " . $row["username"] . "<br>";
             echo $row["letterContent"] . "<br>";
             echo "=================<br>";
-            }
         }
+        // after displaying unread letter records, UPDATE is used to mark them as read 
+        $stmt = $this->dbh->prepare("UPDATE letters SET read = 'True' WHERE time < :time AND username = :username AND read = :showRead");
+        $stmt->bindValue(":time",$time);
+        $stmt->bindValue(":username",$usr);
+        $stmt->bindValue(":showRead",$showRead);
+        $stmt->execute();
     }
 
     public function sendLetter($usr,$content) {

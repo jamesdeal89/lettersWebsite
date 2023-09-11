@@ -20,6 +20,9 @@
         $toBox = $_POST['toBox'];
         $contentBox = $_POST['contBox'];
 
+        // get wether the user wants to enable a delay, this should be a boolean
+        $delay = $_POST['delay'];
+
         echo $_SESSION['usr'];
 
         ?>
@@ -45,7 +48,7 @@ $user = new User($env['DATABASENAME'], $env['URL'], $env['DATABASEUSR'], $env['D
 // check if that adressee exists 
 if ($user->addressExists($toBox)){
     // if adressee exists, add the letter to the letters table
-    $user->sendLetter($toBox,$contentBox);
+    $user->sendLetter($toBox,$contentBox,$delay);
     echo 'Letter has been sent!';
     // below uses echo to run a script which adds a time delay before redirect, this is as PHP's sleep() does not affect header() redirects
     echo '<script>setTimeout(function(){ window.location.href = "login.php"; }, 6000);</script>';

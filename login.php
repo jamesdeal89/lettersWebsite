@@ -56,6 +56,8 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
                 <div style='text-align:center'>  
                 <textarea id='contBox' name='contBox' rows='5' cols='40'></textarea>
                 </div>
+                <label for="delay">Lock letter for 48 hours?</label>
+                <input type="checkbox" id="delay" name="delay" value="delay"><br>
                 <input class="button" type='submit' id='submit' name='submit'><br><br>
             </form>
         </div>

@@ -1,6 +1,9 @@
 <?php
 session_start(); // Start the session to store session variables
 
+// set show mark read as false as a default setting
+$_SESSION['showmarkRead'] = 0;
+
 // enable debugging error reporting
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

@@ -23,7 +23,6 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         <?php
         $env = parse_ini_file('../.env');
         $user = new User($env['DATABASENAME'], $env['URL'], $env['DATABASEUSR'], $env['DATABASEPASS']);
-        $_SESSION['showmarkRead'] = False;
         ?>
         <div>
             <form action='./logout.php' method='post'>

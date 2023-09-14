@@ -63,13 +63,14 @@ class User
         $stmt->bindValue(":time",$time);
         $stmt->bindValue(":username",$usr);
         $stmt->bindValue(":showmarkRead",$showmarkRead);
+        $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "Addressed To: " . $row["username"] . "<br>";
             echo $row["letterContent"] . "<br>";
             echo "=================<br>";
         }
         // after displaying unmarkRead letter records, UPDATE is used to mark them as markRead 
-        $stmt = $this->dbh->prepare("UPDATE letters SET markRead = 'True' WHERE time < :time AND username = :username AND markRead = :showmarkRead");
+        $stmt = $this->dbh->prepare("UPDATE letters SET markRead = 1 WHERE time < :time AND username = :username AND markRead = :showmarkRead");
         $stmt->bindValue(":time",$time);
         $stmt->bindValue(":username",$usr);
         $stmt->bindValue(":showmarkRead",$showmarkRead);
@@ -78,7 +79,7 @@ class User
 
     public function sendLetter($usr,$content,$delay) {
         // take the usr and content parameters and insert this data into the letters table
-        $sql = "INSERT INTO letters(username, letterContent, time, markRead) VALUES(:usr,:content,:time,'False')";
+        $sql = "INSERT INTO letters(username, letterContent, time, markRead) VALUES(:usr,:content,:time,0)";
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(":usr", $usr);
         $stmt->bindValue(":content", $content);

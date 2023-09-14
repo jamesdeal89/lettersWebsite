@@ -52,37 +52,42 @@ class User
         return $count > 0;
     }
 
-    public function getLetter($usr,$showRead) {
+    public function getLetter($usr,$showmarkRead) {
         // select all letter table data
         // where the current time is later than the letter lock time
         // and the current user is the adressee
-        // and, based on $showRead boolean, select letter which have or haven't been read
-        $stmt = $this->dbh->prepare("SELECT * from letters WHERE time < :time AND username = :username AND read = :showRead");
+        // and, based on $showmarkRead boolean, select letter which have or haven't been markRead
+        $stmt = $this->dbh->prepare("SELECT * from letters WHERE time < :time AND username = :username AND markRead = :showmarkRead");
         // get system time in seconds since unix epoch
         $time = time();
         $stmt->bindValue(":time",$time);
         $stmt->bindValue(":username",$usr);
-        $stmt->bindValue(":showRead",$showRead);
+        $stmt->bindValue(":showmarkRead",$showmarkRead);
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "Addressed To: " . $row["username"] . "<br>";
             echo $row["letterContent"] . "<br>";
             echo "=================<br>";
         }
-        // after displaying unread letter records, UPDATE is used to mark them as read 
-        $stmt = $this->dbh->prepare("UPDATE letters SET read = 'True' WHERE time < :time AND username = :username AND read = :showRead");
+        // after displaying unmarkRead letter records, UPDATE is used to mark them as markRead 
+        $stmt = $this->dbh->prepare("UPDATE letters SET markRead = 'True' WHERE time < :time AND username = :username AND markRead = :showmarkRead");
         $stmt->bindValue(":time",$time);
         $stmt->bindValue(":username",$usr);
-        $stmt->bindValue(":showRead",$showRead);
+        $stmt->bindValue(":showmarkRead",$showmarkRead);
         $stmt->execute();
     }
 
-    public function sendLetter($usr,$content) {
-        // TODO: allow a third field which sets a 'date' when a letter can be opened
+    public function sendLetter($usr,$content,$delay) {
         // take the usr and content parameters and insert this data into the letters table
-        $sql = "INSERT INTO letters(username, letterContent) VALUES(:usr,:content)";
+        $sql = "INSERT INTO letters(username, letterContent, time, markRead) VALUES(:usr,:content,:time,'False')";
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(":usr", $usr);
         $stmt->bindValue(":content", $content);
+        // if the user enabled delayed opening, set time variable as current unix epoch time + 48 hours (172800 seconds)
+        $time = time();
+        if ($delay === True) {
+            $time += 172800;
+        }
+        $stmt->bindValue(":time", $time);
         $stmt->execute();
     }
 

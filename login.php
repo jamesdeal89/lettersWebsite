@@ -23,6 +23,7 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         <?php
         $env = parse_ini_file('../.env');
         $user = new User($env['DATABASENAME'], $env['URL'], $env['DATABASEUSR'], $env['DATABASEPASS']);
+        $_SESSION['showmarkRead'] = False;
         ?>
         <div>
             <form action='./logout.php' method='post'>
@@ -31,12 +32,17 @@ if (($_SESSION['login']) == null or ($_SESSION['login']) == False) {
         </div>
 
         <p>Below is your latest letter:</p>
+        <div>
+            <form action='./flipRead.php' method='post'>
+                <input class="button" type='submit' value='Show/Hide Read Letters'>
+            </form>
+        </div>
         <div id='letter' onclick='openLetter()'>
             <p id='contents'>
             
             <?php 
             // parse the letter database data and find the specific user's letters and display them
-            $user->getLetter($_SESSION['usr']);
+            $user->getLetter($_SESSION['usr'],$_SESSION['showmarkRead']);
             ?> 
             
             </p>

@@ -85,7 +85,7 @@ class User
         $stmt->bindValue(":content", $content);
         // if the user enabled delayed opening, set time variable as current unix epoch time + 48 hours (172800 seconds)
         $time = time();
-        if ($delay === True) {
+        if ($delay == 1) {
             $time += 172800;
         }
         $stmt->bindValue(":time", $time);

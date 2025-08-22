@@ -1,6 +1,4 @@
 # Letter Website
-## URL
-[michamie.homes](https://michamie.homes/) (might not be up)
 ## Log-in Page
 ![photo of login page](loginPage.png)
 ## Welcome Page
